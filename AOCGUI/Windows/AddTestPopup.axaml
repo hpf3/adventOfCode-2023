@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:localctl="clr-namespace:AOCGUI.Controlls"
+        mc:Ignorable="d" Width="400" Height="200" 
+        x:Class="AOCGUI.Windows.AddTestPopup"
+        Title="Add Test">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+      <TextBox Name="txtTestInput" Text="" AcceptsReturn="True" AcceptsTab="True" ToolTip.Tip="Test Input" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0"/>
+      <TextBox Name="txtTestOutput" Text="" AcceptsReturn="True" AcceptsTab="True" ToolTip.Tip="Test Output" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="0"/>
+      <Button Content="Cancel" Click="Cancel_Click" IsCancel="True" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+      <Button Content="Submit" Click="Submit_Click" IsDefault="True" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1"/>
+  </Grid>
+</Window>

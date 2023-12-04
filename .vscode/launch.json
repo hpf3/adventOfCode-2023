@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/AOCGUI/bin/Debug/net7.0/AOCGUI.dll",
-            "args": [],
+            "args": ["${workspaceFolder}/Output/"],
             "cwd": "${workspaceFolder}/AOCGUI",
             "stopAtEntry": false,
             "console": "internalConsole"

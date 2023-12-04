@@ -2,8 +2,67 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+        xmlns:iac="clr-namespace:Avalonia.Xaml.Interactions.Custom;assembly=Avalonia.Xaml.Interactions.Custom"
+        xmlns:data="clr-namespace:AOCGUI.Data"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AOCGUI.MainWindow"
         Title="AOCGUI">
-    Welcome to Avalonia!
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <ComboBox x:Name="DaySelector"/>
+            <ComboBox x:Name="SolutionSelector">
+                <ComboBoxItem Content="Solution 1" IsSelected="True"/>
+                <ComboBoxItem Content="Solution 2"/>
+            </ComboBox>
+            <Button Content="Load Data" Click="Load_Click"/>
+            <Button Content="Test" Click="Test_Click"/>
+            <Button Content="Run" Click="Run_Click"/>
+            <Button Content="Clear" Click="Clear_Click"/>
+        </StackPanel>
+        <Grid Grid.Column="1">
+    <TabControl>
+        <TabItem Header="Output">
+    <ListBox x:Name="OutputLog">
+        <ListBox.ItemTemplate>
+<DataTemplate DataType="data:ConsoleOutput">
+    <StackPanel Orientation="Horizontal">
+ <TextBlock Name="repeatCountTextBlock" Text="{Binding RepeatCount, StringFormat='({0})'}" IsVisible="{Binding IsRepeated}" Margin="0,0,10,0" />
+        <TextBox Text="{Binding Message}" Background="Transparent" BorderThickness="0" IsReadOnly="True" ContextMenu="{x:Null}" />
+    </StackPanel>
+</DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+        </TabItem>
+        <TabItem Header="Tests">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <ListBox x:Name="TestList" Grid.Row="0" SelectionMode="Multiple">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="data:TestSelection">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Test}" Margin="0,0,0,10"/>
+                                <TextBlock Text="(✔)" IsVisible="{Binding IsPassed}" Margin="0,0,0,10"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate> 
+                </ListBox>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Button Content="Run" Click="RunTest_Click"/>
+                    <Button Content="Delete" Click="Delete_Click"/>
+                    <Button Content="Add" Click="Add_Click"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Grid>
+    </Grid>
 </Window>
